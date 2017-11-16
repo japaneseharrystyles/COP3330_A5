@@ -56,4 +56,21 @@ encountering an error for:
 
 undefined reference to Mystring::~MyString
 
+The function compiled successfully after defining
+the deconstructor in our .cpp file, even though the
+definition was empty. I believe this is because when
+we decalre a deconstructor in our header file, we
+essential discard the built in class object deconstructor
+
+2.) I have defined the three constructor functions and
+overloaded the insertion operator << so that I can test
+the runtime accuracy of my constructor. 
+
+The int type conversion constructor was the most difficult
+but during runtime, my default constructor is the one
+that is giving me bad output. My member data within an
+object that was instantiated with the default constructor
+is printing "1" to the screen. I assume this has to do with
+attempting to cout an empty character array.
+
  
