@@ -73,4 +73,27 @@ object that was instantiated with the default constructor
 is printing "1" to the screen. I assume this has to do with
 attempting to cout an empty character array.
 
- 
+I'm NOT going to attempt to fix this, since the constructors
+currently exist in an intermediate static state that will be
+altered later on to DMA.
+
+3.) My 3rd bug happened to solve my 2nd bug. 
+I made the same mistake in my last assignment.
+
+My assignment operator wouldn't work when attempting
+to assign my empty MyString with a new MyString object
+because it was a function.
+
+CALL DEFAULT CONSTRUCTOR WITH:
+
+MyString d;
+
+NOT:
+
+MyString d();
+
+I actually ran the default constructor correctly 
+and then changed it to the incorrect format after 
+seeing it and thinking I was correcting it.
+
+4.)
