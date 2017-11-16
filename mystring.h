@@ -52,6 +52,6 @@ public:
 private:
   /* 1. Data */
   // declare your member data and helper functions here
-  //
-  // };
-  //
+  char sArray[100];
+};
+

@@ -40,3 +40,20 @@ our class should provide measures against memory leak, etc.
  
 11.) indexOF Function           [public]
 
+//////////////////////////////////////////////////////////
+                         BUGLIST 
+//////////////////////////////////////////////////////////
+
+1.) I am starting with a static array.
+My member array is declared as follows:
+
+char sArray[100];
+
+My default constructor has an empty definition,
+but for some reason, when I attempt to call the
+default constuctor from the main function, I am
+encountering an error for:
+
+undefined reference to Mystring::~MyString
+
+ 
