@@ -55,3 +55,14 @@ ostream& operator << (ostream& os, const MyString& ms) {
       os << ms.sArray[i];
   return os;
 }
+
+istream& operator >> (istream& is, MyString& ms) {
+  int i = 0;
+  while (is == " ")
+    is.ignore();
+  while (is != " "){
+    is >> ms.sArray[i];
+    i++;
+  }
+  return is;
+}
