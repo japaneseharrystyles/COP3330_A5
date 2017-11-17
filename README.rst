@@ -107,4 +107,18 @@ were equal. Essentially, my function returned true if ANY
 of the characters in the first string were less than ANY
 of the corresponding characters in the second string.
 
+5.) I defined a working 'less than' operator, and then
+to create a 'greater than' operator, I pasted the same code
+into the next definition block, and inverted '<'s to '>'s and 
+'>'s to '<'s. This seemed to make sense, but my 'greater than'
+function ALWAYS returned false.
 
+DANGERS OF COPYPASTE
+
+Inverting all the comparison operators resulted in a for loop
+
+for (int i = 0; i > length; i++)
+
+since 0 is less than length, my for loop was never used.
+
+5.)

@@ -71,10 +71,10 @@ istream& operator >> (istream& is, MyString& ms) {
 //    COMPARISON OPERATORS     //
 /////////////////////////////////
 
-bool operator< (const MyString& ms1 , const MyString& ms2) {
+bool operator < (const MyString& ms1 , const MyString& ms2) {
 int cLength;
 cLength = strlen(ms1.sArray) < strlen(ms2.sArray) ? strlen(ms1.sArray) : strlen(ms2.sArray);
-for (int i = 0; i < cLength; i ++){
+for (int i = 0; i < cLength; i++){
   if (ms1.sArray[i] < ms2.sArray[i])
     return true;
   if (ms1.sArray[i] > ms2.sArray[i])
@@ -82,13 +82,42 @@ for (int i = 0; i < cLength; i ++){
   i++;}
   return false;
 }
-bool operator> (const MyString& , const MyString& ) {
+
+bool operator > (const MyString& ms1, const MyString& ms2) {
+int cLength;
+cLength = strlen(ms1.sArray) < strlen(ms2.sArray) ? strlen(ms1.sArray) : strlen(ms2.sArray);
+for (int i = 0; i < cLength; i++){
+  if (ms1.sArray[i] > ms2.sArray[i])
+    return true;
+  if (ms1.sArray[i] < ms2.sArray[i])
+    return false;
+  i++;}
+  return false;
 }
-bool operator<=(const MyString& , const MyString& ) {
+
+bool operator <=(const MyString& ms1, const MyString& ms2) {
+if (ms1 < ms2 || ms1 == ms2)
+  return true;
+else
+  return false;
 }
-bool operator>=(const MyString& , const MyString& ) {
+
+bool operator >=(const MyString& ms1, const MyString& ms2) {
+if (ms1 > ms2 || ms1 == ms2)
+  return true;
+else
+  return false;
 }
-bool operator==(const MyString& , const MyString& ) {
+
+bool operator ==(const MyString& ms1, const MyString& ms2) {
+if (strlen(ms1.sArray) != strlen(ms2.sArray))
+  return false;
+for (int i = 0; i < strlen(ms1.sArray); i++)
+  if (ms1.sArray[i] != ms2.sArray[i])
+    return false;
+return true;
 }
-bool operator!=(const MyString& , const MyString& ) {
+
+bool operator !=(const MyString& ms1, const MyString& ms2) {
+return !(ms1 == ms2);
 }

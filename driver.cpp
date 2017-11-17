@@ -2,26 +2,41 @@
 
 int main () {
 
-  const char* cstring = "apple";
+  const char* cstring = "Zebra";
 
-  MyString d;
-  MyString c(cstring);
-  MyString i(12345);
-  MyString copy(i);
-  MyString in;
+  MyString s1("Apple");
+  MyString s2(cstring);
+  MyString s3("apple");
+  MyString s4("zebra");
 
-  cout << "MyString d: " << d << endl;
-  cout << "MyString c: " << c << endl;
-  cout << "MyString i: " << i << endl;
-  cout << "MyString copy: " << copy << endl;
 
-  d = "zebra";
-  cout << "MyString d: " << d << endl;
+  cout << "-------------------------------\n";
+  MyString x = "applE", y = "apple";
+  cout << "x = " << x << '\n';
+  cout << "y = " << y << '\n';
+
+   if (x < y)		cout << "x < y is true\n";
+   if (x > y)		cout << "x > y is true\n";
+   if (x <= y)		cout << "x <= y is true\n";
+   if (x >= y)		cout << "x >= y is true\n";
+   if (x == y)		cout << "x == y is true\n";
+   if (x != y)		cout << "x != y is true\n";
+
+  /*
+  cout << "s1: " << s1 << " < s2: " << s2 << endl;
+  bool compare =  s2 < s1;
+  cout << compare << endl;
   
-  //cout << "Input a string: ";
-  //cin >> in;
-  cout << "MyString in: " << in << endl;
-  cout << "Comparing MyString d: " << d << " to MyString c: " << c << endl;
-  bool compare =  d < c;
-  cout << compare;
+  cout << "s1: " << s1 << " < s2: " << s2 << endl;
+  bool compare =  s2 < s1;
+  cout << compare << endl;
+  
+  cout << "s1: " << s1 << " > s2: " << s2 << endl;
+  compare =  s2 > s1;
+  cout << compare << endl;
+
+  cout << "s1: " << s1 << " == s2: " << s2 << endl;
+  compare =  s2 == s1;
+  cout << compare << endl;
+  */
 };
