@@ -96,4 +96,15 @@ I actually ran the default constructor correctly
 and then changed it to the incorrect format after 
 seeing it and thinking I was correcting it.
 
-4.)
+4.) My comparison operator was returning false true values.
+I implemented the operator so that I iterated through a loop
+until the end of the shorter MyString object, comparing
+character by character, returning true if ms1.sArray[i]
+was less than that of ms.sArray[i]. If this 'if statement'
+failed, the loop moved on and checked the next character.
+The loop SHOULD ONLY move on if the character ASCII values
+were equal. Essentially, my function returned true if ANY
+of the characters in the first string were less than ANY
+of the corresponding characters in the second string.
+
+

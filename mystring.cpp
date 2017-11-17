@@ -46,7 +46,7 @@ MyString& MyString::operator = (const MyString& ms) {
   return *this;
 }
 /////////////////////////////////
-//        I/O OPERATORS        //
+//        I/O FUNCTIONS        //
 /////////////////////////////////
 
 ostream& operator << (ostream& os, const MyString& ms) {
@@ -65,4 +65,30 @@ istream& operator >> (istream& is, MyString& ms) {
     i++;
   }
   return is;
+}
+
+/////////////////////////////////
+//    COMPARISON OPERATORS     //
+/////////////////////////////////
+
+bool operator< (const MyString& ms1 , const MyString& ms2) {
+int cLength;
+cLength = strlen(ms1.sArray) < strlen(ms2.sArray) ? strlen(ms1.sArray) : strlen(ms2.sArray);
+for (int i = 0; i < cLength; i ++){
+  if (ms1.sArray[i] < ms2.sArray[i])
+    return true;
+  if (ms1.sArray[i] > ms2.sArray[i])
+    return false;
+  i++;}
+  return false;
+}
+bool operator> (const MyString& , const MyString& ) {
+}
+bool operator<=(const MyString& , const MyString& ) {
+}
+bool operator>=(const MyString& , const MyString& ) {
+}
+bool operator==(const MyString& , const MyString& ) {
+}
+bool operator!=(const MyString& , const MyString& ) {
 }
