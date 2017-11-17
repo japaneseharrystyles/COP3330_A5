@@ -5,12 +5,17 @@
 /////////////////////////////////
 
 MyString::MyString () {
+  size = 1;
+  dArray = new char[size];
+  dArray[0] = '\0';
 }
 
 // conversion constructors //
 
 MyString::MyString (const char* c) {
-  strcpy(sArray, c);
+  size = strlen(c);
+  dArray = new char[size];
+  strcpy(dArray, c);
 }
 
 MyString::MyString (int n) {
@@ -22,7 +27,8 @@ MyString::MyString (int n) {
   }
   n = hold;
   for (int i = digits - 1; i > -1; i--){
-    sArray[i] = (n % 10) + '0';
+    dArray[i] = (n % 10) + '0';
+    size++;
     n /= 10;
   }  
 }
@@ -32,17 +38,20 @@ MyString::MyString (int n) {
 /////////////////////////////////
 
 MyString::~MyString() {
+  delete [] dArray;
 }
 
 MyString::MyString (const MyString& ms) {
-  for (int i = 0; i < strlen(ms.sArray); i++)
-    sArray[i] = ms.sArray[i];
+  size = ms.size;
+  for (int i = 0; i < ms.size; i++)
+    dArray[i] = ms.dArray[i];
 }
 
 MyString& MyString::operator = (const MyString& ms) {
   if (this != &ms)
-    for (int i = 0; i < strlen(ms.sArray); i++)
-      sArray[i] = ms.sArray[i];
+    (*this).size = ms.size;
+    for (int i = 0; i < size; i++)
+      (*this).dArray[i] = ms.dArray[i];
   return *this;
 }
 /////////////////////////////////
@@ -50,19 +59,21 @@ MyString& MyString::operator = (const MyString& ms) {
 /////////////////////////////////
 
 ostream& operator << (ostream& os, const MyString& ms) {
-  if (strlen(ms.sArray) != 0)
-    for (int i = 0; i < strlen(ms.sArray); i++)
-      os << ms.sArray[i];
+  if (ms.size != 0)
+    for (int i = 0; i < ms.size; i++)
+      os << ms.dArray[i];
   return os;
 }
 
 istream& operator >> (istream& is, MyString& ms) {
+  if (ms.dArray != '\0')
+    delete [] ms.dArray;
+    ms.size = 0;
   int i = 0;
-  while (is == " ")
-    is.ignore();
-  while (is != " "){
-    is >> ms.sArray[i];
+  while (is.peek() != ' '){
+    ms.dArray[i] = is.get();
     i++;
+    ms.size++;
   }
   return is;
 }
@@ -73,11 +84,11 @@ istream& operator >> (istream& is, MyString& ms) {
 
 bool operator < (const MyString& ms1 , const MyString& ms2) {
 int cLength;
-cLength = strlen(ms1.sArray) < strlen(ms2.sArray) ? strlen(ms1.sArray) : strlen(ms2.sArray);
+cLength = ms1.size < ms2.size ? ms1.size : ms2.size;
 for (int i = 0; i < cLength; i++){
-  if (ms1.sArray[i] < ms2.sArray[i])
+  if (ms1.dArray[i] < ms2.dArray[i])
     return true;
-  if (ms1.sArray[i] > ms2.sArray[i])
+  if (ms1.dArray[i] > ms2.dArray[i])
     return false;
   i++;}
   return false;
@@ -85,11 +96,11 @@ for (int i = 0; i < cLength; i++){
 
 bool operator > (const MyString& ms1, const MyString& ms2) {
 int cLength;
-cLength = strlen(ms1.sArray) < strlen(ms2.sArray) ? strlen(ms1.sArray) : strlen(ms2.sArray);
+cLength = ms1.size < ms2.size ? ms1.size : ms2.size;
 for (int i = 0; i < cLength; i++){
-  if (ms1.sArray[i] > ms2.sArray[i])
+  if (ms1.dArray[i] > ms2.dArray[i])
     return true;
-  if (ms1.sArray[i] < ms2.sArray[i])
+  if (ms1.dArray[i] < ms2.dArray[i])
     return false;
   i++;}
   return false;
@@ -110,10 +121,10 @@ else
 }
 
 bool operator ==(const MyString& ms1, const MyString& ms2) {
-if (strlen(ms1.sArray) != strlen(ms2.sArray))
+if (ms1.size != ms2.size)
   return false;
-for (int i = 0; i < strlen(ms1.sArray); i++)
-  if (ms1.sArray[i] != ms2.sArray[i])
+for (int i = 0; i < ms1.size; i++)
+  if (ms1.dArray[i] != ms2.dArray[i])
     return false;
 return true;
 }
@@ -121,3 +132,22 @@ return true;
 bool operator !=(const MyString& ms1, const MyString& ms2) {
 return !(ms1 == ms2);
 }
+
+MyString MyString::operator+ (const MyString& ms) const {
+}
+
+MyString& MyString::operator+=(const MyString& ) {
+}
+
+/////////////////////////////////
+//       HELPER FUNCTIONS      //
+/////////////////////////////////
+
+void MyString::info() const {
+  cout << "This object's dynamic array is sized to: " << size << endl;
+  cout << "The object's dynamic array stores: ";
+  if (dArray)
+    cout << *this << endl;
+  else
+    cout << "nothing!" << endl;  
+} 

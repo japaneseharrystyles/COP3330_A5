@@ -50,9 +50,15 @@ public:
   /* 11. indexOf Function */
   int indexOf(const MyString& s) const;
 
+  /* 12. temporary functions */
+  void info() const;
+
 private:
   /* 1. Data */
   // declare your member data and helper functions here
-  char sArray[100];
+  int size;
+  char * dArray;
+
+
 };
 
