@@ -126,4 +126,13 @@ A LOT of seg faults, my program still leaks memory, but it
 compiles and produces accurate output. I'm using valgrind to 
 locate instances of memory leak. 
 
-6.) 
+6.) I found all the memory leaks and corrected them.
+The difficult one was a dynamic tempArray being allocated
+within a concatenation function. The reason I didn't check
+this one, is because my last project, freeing this memory
+cause a compilation error, so I concluded that I must not
+be required to free memory that is allocated within the 
+local scope of a function, but maybe I was attempting to
+free a memory block that was already empty.
+
+ 

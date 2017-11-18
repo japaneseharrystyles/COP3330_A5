@@ -49,9 +49,9 @@ MyString::MyString (const MyString& ms) {
 
 MyString& MyString::operator = (const MyString& ms) {
   if (this != &ms)
-    (*this).size = ms.size;
+    this->size = ms.size;
     for (int i = 0; i < size; i++)
-      (*this).dArray[i] = ms.dArray[i];
+      this->dArray[i] = ms.dArray[i];
   return *this;
 }
 /////////////////////////////////
@@ -163,7 +163,7 @@ MyString& MyString::operator+=(const MyString& ms) {
     this->dArray[i] = tempArray[i];
   for (int j = tempSize; j < this->size; j++)
     this->dArray[j] = ms.dArray[j - tempSize];
-  
+  delete [] tempArray; 
   return *this;
 }
 
