@@ -121,4 +121,9 @@ for (int i = 0; i > length; i++)
 
 since 0 is less than length, my for loop was never used.
 
-5.)
+5.) I just made the attempted conversion to dynamic mem.
+A LOT of seg faults, my program still leaks memory, but it 
+compiles and produces accurate output. I'm using valgrind to 
+locate instances of memory leak. 
+
+6.) 

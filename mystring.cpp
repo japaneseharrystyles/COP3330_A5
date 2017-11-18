@@ -10,8 +10,6 @@ MyString::MyString () {
   dArray[0] = '\0';
 }
 
-// conversion constructors //
-
 MyString::MyString (const char* c) {
   size = strlen(c);
   dArray = new char[size];
@@ -19,16 +17,16 @@ MyString::MyString (const char* c) {
 }
 
 MyString::MyString (int n) {
-  int digits = 0;
+  size = 0;
   int hold = n;
   while (n) {
     n /= 10;
-    digits++;
+    size++;
   }
   n = hold;
-  for (int i = digits - 1; i > -1; i--){
+  dArray = new char[size];
+  for (int i = size - 1; i > -1; i--){
     dArray[i] = (n % 10) + '0';
-    size++;
     n /= 10;
   }  
 }
@@ -42,7 +40,9 @@ MyString::~MyString() {
 }
 
 MyString::MyString (const MyString& ms) {
+    
   size = ms.size;
+  dArray = new char[size];
   for (int i = 0; i < ms.size; i++)
     dArray[i] = ms.dArray[i];
 }
@@ -133,10 +133,38 @@ bool operator !=(const MyString& ms1, const MyString& ms2) {
 return !(ms1 == ms2);
 }
 
+/////////////////////////////////
+//   CONCATENATION FUNCTIONS   //
+/////////////////////////////////
+
 MyString MyString::operator+ (const MyString& ms) const {
+  MyString sum;
+  sum.size = this->size + ms.size;
+  delete [] sum.dArray;
+  sum.dArray = new char[sum.size];
+  for (int i = 0; i < this->size; i++)
+    sum.dArray[i] = this->dArray[i];
+  for (int j = this->size; j < sum.size; j++)
+    sum.dArray[j] = ms.dArray[j - this->size];
+  return sum;
 }
 
-MyString& MyString::operator+=(const MyString& ) {
+MyString& MyString::operator+=(const MyString& ms) {
+  
+  char* tempArray = new char[this->size];
+  strcpy(tempArray, this->dArray);
+  int tempSize = this->size;
+  
+  this->size += ms.size;
+  delete [] this->dArray;
+  this->dArray = new char[this->size];
+  
+  for (int i = 0; i < tempSize; i++)
+    this->dArray[i] = tempArray[i];
+  for (int j = tempSize; j < this->size; j++)
+    this->dArray[j] = ms.dArray[j - tempSize];
+  
+  return *this;
 }
 
 /////////////////////////////////
