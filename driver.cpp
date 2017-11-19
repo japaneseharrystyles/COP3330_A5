@@ -1,90 +1,94 @@
+#include <iostream>
+using namespace std;
+
 #include "mystring.h"
 
-int main () {
+int main()
+{
+   MyString s1;
+   MyString s2("Hello, World");
+   MyString s3 = "Welcome to Florida, have a nice day";
+   MyString s4 = 12345;
 
-//		Test 1  
+   cout << "s1 = " << s1 << '\n';
+   cout << "s2 = " << s2 << '\n';
+   cout << "s3 = " << s3 << '\n';
+   cout << "s4 = " << s4 << '\n';
+   cout << '\n';
 
-cout << "Testing default constructor" << endl;
+   s1.info();
+   s2.info();
+   s3.info();
+   s4.info();
 
-MyString d; 
+   cout << "Making the calls:\n"
+        << "\tcin >> s1\n"
+        << "\tgetline(cin, s2, ',')\n"
+        << "\tgetline(cin, s3)\n";
+   cout << "Enter some sentences: ";
+  
+   cin >> s1;
+   getline(cin,s2,',');
+   getline(cin,s3);
 
-d.info();
+   cout << "\nNew string values:\n";
 
-//		Test 2
+   cout << "s1 = " << s1 << '\n';
+   cout << "s2 = " << s2 << '\n';
+   cout << "s3 = " << s3 << '\n';
+   cout << "---------------------------\n";
 
-cout << "Testing conversion constructor (char*)" << endl;
+   s1 = "Dog";
+   s2 = "Food";
+   MyString result = s1 + s2;
+   cout << "result = " << result << '\n';
 
-const char* cstar = "Tristen";
+   s1 += s2;
+   cout << "s1 = " << s1 << endl;
 
-MyString c1(cstar);
-MyString c2("Hi"); 
+   /*const MyString s5 = "The concatenation of the catapult is a catamaran";
+   cout << "s5 = " << s5 << endl;
+   cout << "s5.indexOf(\"cat\") returns " << s5.indexOf("cat") << '\n';
+   cout << "s5.indexOf(\"dog\") returns " << s5.indexOf("dog") << '\n';
 
-c1.info();
-c2.info();
+   cout << "s5.getLength() = " << s5.getLength() << '\n';
 
-//		Test 3
+   cout << "s5[4] = " << s5[4] << '\n';
+   cout << "s5[10] = " << s5[10] << '\n';
+   cout << "s5[15] = " << s5[15] << '\n';
+   cout << "s5[52] = ascii " << static_cast<int>(s5[52]) << '\n';
 
-cout << "Testing conversion constructor (int)" << endl;
+   cout << "s5.substring(10,16) = " << s5.substring(10,16) << '\n';
+   cout << "s5.substring(23) = " << s5.substring(23) << '\n';
+  */
+   cout << "-----------------------------\n";
 
-int n = 123;
+   MyString words = "Greetings, Earthling";
 
-MyString n1(n);
-MyString n2(54321);
+   cout << "words = " << words << '\n';
+   cout << "words.getLength() = " << words.getLength() << '\n';
+   words[0] = 'K';
+   words[4] = 'p';
+   words[16] = 'z';
 
-n1.info();
-n2.info();
+   cout << "words = " << words << '\n';
 
-//		Test 3
+   words[25] = 'Q';
+   cout << "words = " << words << '\n';
 
-cout << "Testing copy constructor" << endl;
+   words.insert(11, "Insane ");
+   cout << "words = " << words << '\n';
 
-MyString copy(c1);
+   cout << "-----------------------------\n";
 
-copy.info();
+   MyString x = "apple", y = "apply";
+   cout << "x = " << x << '\n';
+   cout << "y = " << y << '\n';
 
-//		Test 4
-
-cout << "Testing assignment operator" << endl;
-
-MyString eq = c2;
-
-eq.info();
-
-eq = n2;
-
-eq.info();
-
-//		Test 5
-
-cout << "Testing I/O functions" << endl;
-
-cout << eq << n2 << endl;
-
-//		Test 6
-
-cout << "Testing comparison operators" << endl;
-
-MyString x = "apply", y = "apply";
-
-cout << "x = " << x << '\n';
-cout << "y = " << y << '\n';
-
-if (x < y)		cout << "x < y is true\n";
-if (x > y)		cout << "x > y is true\n";
-if (x <= y)		cout << "x <= y is true\n";
-if (x >= y)		cout << "x >= y is true\n";
-if (x == y)		cout << "x == y is true\n";
-if (x != y)		cout << "x != y is true\n";
-   
-//		Test 7
-
-cout << "Testing concatenation" << endl;
-
-MyString sum;
-sum = c2 + c1;
-sum.info();
-
-sum += n2;
-sum.info();
-
+   if (x < y)		cout << "x < y is true\n";
+   if (x > y)		cout << "x > y is true\n";
+   if (x <= y)		cout << "x <= y is true\n";
+   if (x >= y)		cout << "x >= y is true\n";
+   if (x == y)		cout << "x == y is true\n";
+   if (x != y)		cout << "x != y is true\n";
 }

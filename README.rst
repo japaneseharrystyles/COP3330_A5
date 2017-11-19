@@ -135,4 +135,43 @@ be required to free memory that is allocated within the
 local scope of a function, but maybe I was attempting to
 free a memory block that was already empty.
 
- 
+7.) I had a little bit of trouble with the I/O functions
+I was deleting the array before loading the istream data
+into it, but it was casuing me a double free error, even
+though I was checking to make sure the array wasn't empty
+before I deallocated. The problem was that I forget to
+re allocate the consecutive memory needed by the array,
+attempting to load the characters into an array pointer
+that didn't have any address (NULL address?)
+
+8.) The state of my assignment is good, I have only the
+indexOf function left to define, and my output matches
+the sample output almost perfectly. In the driver section
+that tests extraction, I am losing a single space character. 
+I think this can be easily fixed with cin.putback()? not sure
+if that's the actual name of the function but something like that.
+
+istream_object.putback(char_to_put_back)
+
+because you need a character to put back, you have to make
+sure that YOU are retaining these characters, because the
+istream (i assume) isn't babysitting your changes.
+
+9.) I ran some additional testing on my extraction operators,
+I need to implement a loop to ignore leading whitespace. 
+
+Ok perfect, really simple look to ignore leading whitespace:
+
+while (istream_object.peek() == ' ')
+    istream_object.ignore();
+
+10.) I am running valgrind to check for errors and memory leak.
+I have corrected any memory leaks, but from what I can infer
+about the errors, I think I'm incurring an erroneous read/write
+anytime that I use strlen() or strcpy() for the CString library.
+I have looked into these functions and I can't tell how I'm using
+them incorrectly. For the purposes of the project, my program
+accurately implements all required functionality, but I really
+would like to have a clean valgrind report as well.
+
+
